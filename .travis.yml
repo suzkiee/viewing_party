@@ -3,7 +3,7 @@ rbenv:
 - 2.7.2
 addons:
   postgresql: 9.6
-before_script: 
+before_script:
 - bundle install --jobs=3 --retry=3
 script:
 - bundle exec rails db:{create,migrate} RAILS_ENV=test
@@ -11,5 +11,9 @@ script:
 deploy:
   provider: heroku
   api_key:
-  app: shrouded-plains-74033
-  run: rails db:migrate
+    secure: l0RoSE2X40ctP0AL1yEkcXD6pyU5IbYjiCeCxHJoXsWRMum/x9V1uozHuKc19YUtxizDgvMMpCPTcs9m3oI3lyHqeIFvMLboJ+ojseBbQjJhSs/Ketaav3lqygCPUvnWgKdL9H3jzYgZ5gYNWc+uJ6UhITMQ4fhAuEaOsIUaK/QeYRiv/dvZdJ+d77mOv4n3pt2qL4azbrtYiwOT1x6T35JBL2jmF8RsvwbeY1LxoGLlIFNgCWvqlN3o6uDHFSBLQ1evxQMZr6PosOrBctbJ0+Rx6S9BM5vE0IPh57bRftox71MYOlISsr+6UEQg9g0Dzh3mW1D+fGo9K5AxiB/iDZr83leytEYw+T13zROp1o4e41e7haqxXwmmPMqdWl13CfQe6n+9+CS1VBu/FMSge8yCAAYZK78OPyRssr/HeWm3S/S5Y7p3QdFmz22PVStyzC9kuO+YdbCtDiX7J3ewbJ1B0D0H5Fl97ZGecoC7aUiAOcL3zCtLh0aaIX2jhQCe88K68YmqA1eOJeItajNXIUanv9CRtX9Q2JaaebAGiX8593Ml7kzysRXGuqibfuUMQiPlzt8g6ve8IIZZyB3dNayrZr8v1g0zbFxZAeuiazZ2y/YYXrjwZnZiBe3OAActKfw2t6sZfFETulaBPObtZd9MenHRypODc4orDnt7+wo=
+  app: 'yes'
+  on:
+    repo: suzkiee/viewing_party
+    branch: main
+  skip_cleanup: 'true'
