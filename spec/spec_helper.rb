@@ -117,14 +117,14 @@ end
 
 def stub_movie_details_by_id
   response_body = File.read('spec/fixtures/find_cast_by_id.json')
-    stub_request(:get, "https://api.themoviedb.org/3/movie/337404/credits").
+    cast = stub_request(:get, "https://api.themoviedb.org/3/movie/337404/credits").
       to_return(status: 200, body: response_body, headers: {})
 
   response_body = File.read('spec/fixtures/find_reviews.json')
-    stub_request(:get, "https://api.themoviedb.org/3/movie/337404/reviews").
+    reviews = stub_request(:get, "https://api.themoviedb.org/3/movie/337404/reviews").
       to_return(status: 200, body: response_body, headers: {})
 
   response_body = File.read('spec/fixtures/find_movie_by_id.json')
-    stub_request(:get, "https://api.themoviedb.org/3/movie/337404").
+    movie = stub_request(:get, "https://api.themoviedb.org/3/movie/337404").
       to_return(status: 200, body: response_body, headers: {})
-  end
+end

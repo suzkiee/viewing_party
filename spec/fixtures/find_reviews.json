@@ -1,6 +1,4 @@
 {
-  "id": 337404,
-  "page": 1,
   "results": [
       {
           "author": "msbreviews",
@@ -44,7 +42,5 @@
           "updated_at": "2021-07-08T23:09:51.828Z",
           "url": "https://www.themoviedb.org/review/60e74fc043250f0047133e58"
       }
-  ],
-  "total_pages": 1,
-  "total_results": 3
+  ]
 }

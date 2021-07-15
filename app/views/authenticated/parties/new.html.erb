@@ -3,6 +3,7 @@
  
 <%= bootstrap_form_with(model: @party, url: parties_path, local: true, method: :post) do |f| %>
   <%= f.hidden_field :movie_id, value: @movie.id %>
+  <%= f.hidden_field :title, value: @movie.title %>
   <%= f.date_field :date, placeholder: "Date:" %>
   <%= f.time_field :start_time, placeholder: "Start Time:" %>
   <%= f.text_field :duration, placeholder: "Party Duration(in minutes):", value: @movie.runtime, min: 0 %>

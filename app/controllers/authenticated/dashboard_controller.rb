@@ -5,5 +5,4 @@ class Authenticated::DashboardController < Authenticated::BaseController
       User.find(friend.friend_id)
     end
   end
-
 end

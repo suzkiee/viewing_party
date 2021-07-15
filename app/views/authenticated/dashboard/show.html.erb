@@ -17,11 +17,40 @@
 <% end %><br><br>
 
 <h3>Viewing Parties</h3><hr><br><br>
-<h4>Parties You're In: </h4>
+<h4>Parties You're Hosting: </h4><br>
   <% @user.parties.each do |party| %>
-    <%= party.title %>
-    <%= party.date.strftime("B% d%, Y%")%>
-    <%= party.start_time.strftime("B% d%, Y%")%>
+    <div>
+    <h5><%= link_to party.title, "/movies/#{party.movie_id}" %></h5>
+    <%= party.date.strftime("%B %d, %Y")%> 
+    <%= party.start_time.strftime("%l:%M %p")%>
+    <h6>Party Guests: </h6>
+    <ul>
+      <% party.guests.each do |guest| %>
+        <%if guest != current_user %>
+          <li><%= guest.email %></li>
+        <% end %>
+      <% end %>
+    </div><br>
+  <% end %>
+</div>
+
+<h4>Parties You're Invited To: </h4><br>
+  <% @user.invited_parties.each do |party| %>
+    <div>
+    <h5><%= link_to party.title, "/movies/#{party.movie_id}" %></h5>
+    <%= party.date.strftime("%B %d, %Y")%> 
+    <%= party.start_time.strftime("%l:%M %p")%>
+    <h6>Party Guests: </h6>
+    <ul>
+      <% party.guests.each do |guest| %>
+        <%if guest == current_user %>
+          <li><b><%= guest.email%></b></li>
+        <% else %> 
+          <li><%= guest.email %></li>
+        <% end %>
+      <% end %>
+    </ul>
+    </div><br>
   <% end %>
 </div>
 
