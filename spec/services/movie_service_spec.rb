@@ -18,7 +18,7 @@ RSpec.describe MovieService do
           expect(response).to have_key(:results)
           expect(response).to have_key(:page)
           expect(response[:results]).to be_an(Array)
-          expect(response[:results].first[:title]).to eq("Black Widow")
+          expect(response[:results].first[:title]).to eq("The Boss Baby: Family Business")
         end
       end
     end
