@@ -42,20 +42,16 @@ RSpec.describe User, type: :model do
       end
     end
 
-  describe "#instance methods" do
-    before(:each) do
-      @user_1 = User.create!(email: 'test123@xyz.com', password: 'viewparty')
-      @user_2 = User.create!(email: 'lola_rabbit@aol.com', password: 'lola')
-      @user_3 = User.create!(email: 'bugs_bunny@gmail.com', password: 'bugs')
-      @user_4 = User.create!(email: 'daffy_duck@yahoo.com', password: 'daffy')
-
-      Friendship.create!(user: @user_1, friend: @user_2)
-      Friendship.create!(user: @user_1, friend: @user_3)
-    end
-
     describe "#friends_emails" do
       it "returns all the email addresses for all the friends of the user" do
-        
+        @user_1 = User.create!(email: 'test123@xyz.com', password: 'viewparty')
+        @user_2 = User.create!(email: 'lola_rabbit@aol.com', password: 'lola')
+        @user_3 = User.create!(email: 'bugs_bunny@gmail.com', password: 'bugs')
+        @user_4 = User.create!(email: 'daffy_duck@yahoo.com', password: 'daffy')
+  
+        Friendship.create!(user: @user_1, friend: @user_2)
+        Friendship.create!(user: @user_1, friend: @user_3)
+
         expect(@user_1.friends_emails).to eq([@user_2.email, @user_3.email])
       end
     end
