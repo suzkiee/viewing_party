@@ -91,16 +91,28 @@ RSpec.describe 'dashboard page' do
         expect(page).to have_content(@friend.email)
       end
 
-      it 'shows viewing parties that user has been invited to' do
+      it 'shows viewing parties that user is hosting' do
         movie = VCR.use_cassette("movie_details_by_id") do
           MovieFacade.movie_details_by_id(337404)
         end
-        user = create(:mock_user)
         friend = create(:mock_user)
+        @user_1.friends << friend 
         party = create(:mock_party, host_id: friend.id, movie_id: movie.id, title: movie.title)
-        party_guests = create(:mock_party_guest, party_id: party.id, guest: user )
+        require 'pry'; binding.pry
+        party_guests = create(:mock_party_guest, party_id: party.id, guest: @user_1 )
+        visit "/movies/337404"
+        click_on "Create Viewing Party"
+        visit "/parties/new"
+        
+        expect(current_path).to eq("/parties/new")
         save_and_open_page
-        expect(page).to have_content("Parties You're In")
+        fill_in 'date', with: '12/12/21'
+        fill_in 'start_time', with: '5:00 PM'
+        fill_in 'duration', with: 200
+        check "friend[#{friend.id}]"
+        click_on "Create Party"
+        
+        expect(page).to have_content("Parties You're Hosting")
         expect(page).to have_content("Cruella")
         expect(page).to have_content(party.date)
         expect(page).to have_content(party.start_time)

@@ -12,7 +12,7 @@ class MovieFacade
   def self.movie_details_by_id(movie_id)
     service = MovieService.new
     movie = service.request_api("/3/movie/#{movie_id}") 
-    cast = service.request_api("/3/movie/#{movie_id}/credits") 
+    cast = service.request_api("/3/movie/#{movie_id}/credits")
     reviews = service.request_api("/3/movie/#{movie_id}/reviews")
     @movie = MovieDetails.new(movie, cast, reviews)
   end

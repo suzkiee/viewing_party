@@ -16,8 +16,4 @@ class User < ApplicationRecord
   def find_party_guests_user
     PartyGuest.where('guest_id = ?', self.id)
   end
-
-  def self.guest_emails 
-    joins(:party_guests).where("party_guests.guest_id = users.id").pluck(:emails)
-  end 
 end
