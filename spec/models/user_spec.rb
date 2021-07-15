@@ -52,7 +52,8 @@ RSpec.describe User, type: :model do
         Friendship.create!(user: @user_1, friend: @user_2)
         Friendship.create!(user: @user_1, friend: @user_3)
 
-        expect(@user_1.friends_emails).to eq([@user_2.email, @user_3.email])
+        expect(@user_1.friends_emails.include?(@user_2.email)).to eq(true)
+        expect(@user_1.friends_emails.include?(@user_3.email)).to eq(true)
       end
     end
   end
