@@ -12,6 +12,7 @@ class Authenticated::PartiesController < Authenticated::BaseController
     if party[:duration].to_i > movie.runtime
       new_party = Party.create(party)
       if new_party.save
+        add_party_guest(new_party) if params[:friend]
         redirect_to dashboard_path
         flash[:success] = "You've created a Viewing Party!"
       else 
@@ -24,8 +25,19 @@ class Authenticated::PartiesController < Authenticated::BaseController
     end
   end
 
-  private 
+  private
+    def add_party_guest(party)
+      guests = friend_params.select { |friend_id, invited| invited == '1' }
+      guests.each do |id, value|
+        PartyGuest.create(party_id: party.id,  guest_id: id.to_i)
+      end
+    end
+
     def party_params
-      params.permit(:movie_id, :duration, :start_time, :date)
+      params.permit(:movie_id, :duration, :start_time, :date, :title)
+    end
+
+    def friend_params
+      params.require(:friend).permit!
     end
 end
